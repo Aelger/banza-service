@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, Enum, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from app.config.db import Base
-from app.models import cuenta
 
 
 class Movimiento(Base):
@@ -12,7 +11,7 @@ class Movimiento(Base):
     tipo = Column(Enum('Ingreso', 'Egreso', name='tipos de movimientos'), nullable=False)
     importe = Column(Integer, nullable=False)
     fecha = Column(Date, nullable=False)
-    cuenta = relationship("Cuenta", back_populates="Movimiento")
+    cuenta = relationship("Cuenta", back_populates="movimientos")
 
     def __repr__(self):
         return f"Movimiento del tipo: {self.tipo} con la cuenta id: {self.id_cuenta}"

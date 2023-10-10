@@ -9,6 +9,5 @@ class CategoriaCliente(Base):
 
     id_categoria = Column(Integer, ForeignKey('categoria.id'), primary_key=True)
     id_cliente = Column(Integer, ForeignKey('cliente.id'), nullable=False)
-
-    categoria = relationship("Categoria", back_populates="CategoriaCliente")
-    cliente = relationship("Cliente", back_populates="CategoriaCliente")
+    categoria = relationship("Categoria", back_populates="categoria_cliente")
+    cliente = relationship("Cliente", back_populates="categoria_cliente")

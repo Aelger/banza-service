@@ -1,11 +1,15 @@
 from fastapi import FastAPI
-from app.config.db import Base, engine
-from app.models import cliente, categoria, categoria_cliente, cuenta, movimiento
+from app.models import models
+from app.routes.cliente import router as client_router
 
 app = FastAPI()
-Base.metadata.create_all(engine)
+app.include_router(client_router)
+models.Base.metadata.create_all(models.engine)
 
 
-@app.get("/healthCheck")
+@app.get("/healthcheck")
 def health_check():
-    return {"Hello": "World"}
+    return {"Im": "alive"}
+
+
+

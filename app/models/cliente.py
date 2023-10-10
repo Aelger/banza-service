@@ -8,8 +8,8 @@ class Cliente(Base):
 
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
-    cuentas = relationship("Cuenta", back_populates="Cliente")
-    categoria_cliente = relationship("CategoriaCliente", uselist=False, back_populates="Cliente")
+    cuenta = relationship("Cuenta", back_populates="cliente")
+    categoria_cliente = relationship("CategoriaCliente", back_populates="cliente")
 
     def __repr__(self):
         return f"Cliente nombre: {self.nombre} con id: {self.id}"

@@ -7,3 +7,8 @@ def crear(db: Session, id_cliente: int):
     db.add(cuenta_db)
     db.commit()
     return cuenta_db
+
+
+def obtener_cuentas(db: Session, id_cliente: int):
+    cuentas = db.query(Cuenta).filter(Cuenta.id_cliente == id_cliente)
+    return cuentas

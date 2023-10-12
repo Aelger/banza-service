@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from datetime import date
-from app.schemas.cuenta import Cuenta
 
 
 class Movimiento(BaseModel):
@@ -9,7 +8,6 @@ class Movimiento(BaseModel):
     tipo: str
     importe: int
     fecha: date
-    cuenta: Cuenta
 
     class Config:
         orm_mode = True

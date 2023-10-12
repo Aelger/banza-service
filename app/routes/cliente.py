@@ -1,26 +1,25 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.services import cliente
-from app.services import cuenta
+from app.services import cliente, cuenta
 from app.config.db import obtener_conexion
-from app.schemas.cliente import CrearCliente
+from app.schemas.cliente import ClienteBase
 
-router = APIRouter()
+cliente_router = APIRouter()
 
 
-@router.get("/cliente/{id_cliente}")
+@cliente_router.get("/cliente/{id_cliente}")
 async def obtener_cliente(id_cliente: int, db: Session = Depends(obtener_conexion)):
     db_cliente = cliente.obtener(db, id_cliente)
     return db_cliente
 
 
-@router.get("/cliente")
+@cliente_router.get("/cliente")
 async def obtener_clientes(db: Session = Depends(obtener_conexion)):
     return cliente.obtener_todos(db)
 
 
-@router.post("/cliente")
-async def crear_cliente(cliente_body: CrearCliente, db: Session = Depends(obtener_conexion)):
+@cliente_router.post("/crear-cliente")
+async def crear_cliente(cliente_body: ClienteBase, db: Session = Depends(obtener_conexion)):
     nuevo_cliente = cliente.crear(db, cliente_body)
     nueva_cuenta = cuenta.crear(db, nuevo_cliente.id)
     db.refresh(nuevo_cliente)
@@ -28,6 +27,12 @@ async def crear_cliente(cliente_body: CrearCliente, db: Session = Depends(obtene
     return {"nuevo_cliente": nuevo_cliente, "nueva_cuenta": nueva_cuenta}
 
 
-@router.delete("/borrar-cliente/{id_cliente}")
+@cliente_router.delete("/borrar-cliente/{id_cliente}")
 async def borrar_cliente(id_cliente: int, db: Session = Depends(obtener_conexion)):
     cliente.borrar(db, id_cliente)
+
+
+@cliente_router.get("/cuentas-cliente/{id_cliente}")
+async def cuentas_por_cliente(id_cliente: int, db: Session = Depends(obtener_conexion)):
+    cuentas = cliente.obtener(db, id_cliente).cuenta
+    return cuentas

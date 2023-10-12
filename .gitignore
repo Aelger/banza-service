@@ -1,0 +1,44 @@
+# Directorios
+__pycache__/
+venv/
+dist/
+build/
+*.egg-info/
+htmlcov/
+.coverage
+.tox/
+
+# Archivos
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.log
+*.swp
+*.swo
+*.DS_Store
+.env
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Entornos virtuales (Python virtual environments)
+*.pyc
+
+# Dependencias y paquetes de Python
+__pypackages__/
+*.egg
+*.egg-info/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+*.cache
+*.out
+*.pid
+
+# Archivos generados por FastAPI o Uvicorn
+logs/

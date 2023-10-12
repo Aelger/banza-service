@@ -8,7 +8,7 @@ class Categoria(Base):
 
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
-    categorias_cliente = relationship("CategoriaCliente", back_populates="categoria")
+    categoria_cliente = relationship("CategoriaCliente", back_populates="categorias")
 
     def __repr__(self):
         return f"Categoria del tipo: {self.nombre}"

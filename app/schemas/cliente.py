@@ -10,3 +10,10 @@ class Cliente(ClienteBase):
 
     class Config:
         orm_mode = True
+
+
+class ActualizarCliente(Cliente):
+    nombre: str = None
+    categoria_cliente: int = None
+
+    

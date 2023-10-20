@@ -4,5 +4,5 @@ from pydantic import BaseModel
 class Categoria(BaseModel):
     nombre: str
 
-    class Config:
+    class ConfigDict:
         orm_mode = True

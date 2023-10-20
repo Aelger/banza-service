@@ -9,7 +9,7 @@ class Movimiento(BaseModel):
     importe: int
     fecha: date
 
-    class Config:
+    class ConfigDict:
         orm_mode = True
 
 

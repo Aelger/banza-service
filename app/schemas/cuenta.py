@@ -5,7 +5,7 @@ class Cuenta(BaseModel):
     id: int
     id_cliente: int
 
-    class Config:
+    class ConfigDict:
         orm_mode = True
 
 

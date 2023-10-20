@@ -8,7 +8,7 @@ class ClienteBase(BaseModel):
 class Cliente(ClienteBase):
     categoria_cliente: int
 
-    class Config:
+    class ConfigDict:
         orm_mode = True
 
 

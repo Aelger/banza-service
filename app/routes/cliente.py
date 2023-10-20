@@ -31,6 +31,7 @@ async def crear_cliente(cliente_body: ClienteBase, db: Session = Depends(obtener
 async def borrar_cliente(id_cliente: int, db: Session = Depends(obtener_conexion)):
     cliente.borrar(db, id_cliente)
 
+
 @cliente_router.put("/editar/{id_cliente}")
 async def editar_cliente(id_cliente: int, cliente_update: ActualizarCliente, db: Session = Depends(obtener_conexion)):
     cliente.editar(db, cliente_update, id_cliente)
@@ -40,6 +41,7 @@ async def editar_cliente(id_cliente: int, cliente_update: ActualizarCliente, db:
 async def cuentas_por_cliente(id_cliente: int, db: Session = Depends(obtener_conexion)):
     cuentas = cliente.obtener(db, id_cliente).cuenta
     return cuentas
+
 
 @cliente_router.post("/agregar-categoria")
 async def agregar_categoria(id_cliente: int, id_categoria: int, db: Session = Depends(obtener_conexion)):
